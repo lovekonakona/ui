@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+
+<link rel="import" href="../../bower_components/polymer/polymer.html" />
+
+<polymer-element name="ui-navbar">
+    <template>
+        <link rel="stylesheet" type="text/css" href="../../css/ui.css">
+
+        <div class="ui-navbar">
+            <a href="{{logoHref}}" class="logo">{{logoText}}</a>
+        </div>
+    </template>
+
+    <script>
+        Polymer("ui-navbar", {
+            logoHref: "",
+            logoText: "",
+            ready: function() {
+                var logo = this.querySelector('logo');
+                if (logo != null) {
+                    this.logoText = logo.textContent.trim();
+                    this.logoHref = logo.getAttribute('href');
+                }
+            }
+        });
+    </script>
+
+</polymer-element>
