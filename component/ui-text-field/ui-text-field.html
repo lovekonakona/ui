@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+
+<link rel="import" href="../../bower_components/polymer/polymer.html" />
+
+<polymer-element name="ui-text-field" attributes="name label required">
+    <template>
+        <link rel="stylesheet" type="text/css" href="../../css/ui.css">
+
+        <div class="ui-text-field">
+            <label id="label" class="ui-text-field-label" for="input">{{label}}:</label>
+            <input class="ui-text-field-text" type="{{type}}" id="input" name="{{name}}" value="{{value}}" placeholder="{{placeholder}}" autocomplete="off" on-blur="{{validate}}">
+            <span id="error" class="ui-text-field-error">{{errorMessage}}</span>
+        </div>
+    </template>
+
+    <script>
+        Polymer("ui-text-field", {
+            type: 'text',
+            validated: true,
+            ready: function() {
+                if (this.type != 'text' && this.type != 'password') {
+                    this.type = 'text';
+                }
+            },
+            valueChanged: function() {
+                var trim = this.trim;
+
+                if (trim != null) {
+                    this.value = this.value.trim();
+                }
+
+                this.validate();
+            },
+            validate: function() {
+                var value    = this.value || "";
+                var length   = value.length;
+
+                var required = this.required;
+                var min      = this.min;
+                var max      = this.max;
+                var regex    = this.regex;
+                var email    = this.email;
+
+                this.validated = false;
+
+                if (required != null && value == '') {
+                    this.errorMessage = "请输入" + this.label;
+
+                } else if (min != null && min >= length) {
+                    this.errorMessage = "不能小于" + min + "个字符";
+
+                } else if (max != null && max <= length) {
+                    this.errorMessage = "不能大于" + max + "个字符";
+
+                } else if (regex != null && value.match(new RegExp(regex)) == null) {
+                    this.errorMessage = "不符合规则";
+
+                } else if (email != null && value.match(/^\w+@\w+(\.\w+)+$/) == null) {
+                    this.errorMessage = "请输入正确的邮箱";
+
+                } else {
+                    this.errorMessage = "";
+                    this.validated = true;
+                }
+
+                return this.validated;
+            }
+        });
+    </script>
+
+</polymer-element>

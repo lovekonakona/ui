@@ -1,0 +1,29 @@
+//
+// text-field
+// --------------------------------------------------
+
+.ui-text-field {
+    margin: 10px 20px;
+}
+
+.ui-text-field .ui-text-field-label {
+    width: 150px;
+    text-align: right;
+    padding-right: 10px;
+    display: inline-block;
+    font-size: $base-fontsize;
+}
+
+.ui-text-field-text {
+    border: 1px solid #ccc;
+    font-size: $small-fontsize;
+    line-height: $small-fontsize * 1.5;
+    padding: 3px;
+    width: 200px;
+}
+
+.ui-text-field-error {
+    color: #f90000;
+    font-size: $small-fontsize;
+    margin-left: 5px;
+}

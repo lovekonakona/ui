@@ -1,0 +1,18 @@
+<!DOCTYPE HTML>
+
+<link rel="import" href="../../bower_components/polymer/polymer.html" />
+
+<polymer-element name="ui-panel" attributes="title">
+    <template>
+        <link rel="stylesheet" type="text/css" href="../../css/ui.css">
+        <div class="ui-panel">
+            <div class="ui-panel-title">{{title}}</div>
+            <div class="ui-panel-body">
+                <content></content>
+            </div>
+        </div>
+    </template>
+    <script>
+        Polymer('ui-panel', {});
+    </script>
+</polymer-element>

@@ -5,11 +5,148 @@
         <title>UI</title>
         <script src="bower_components/platform/platform.js"></script>
         <link rel="import" href="component/ui-navbar/ui-navbar.html">
-        <link rel="stylesheet" type="text/css" href="css/ui.css">
+        <link rel="import" href="component/ui-table/ui-table.html">
+        <link rel="import" href="component/ui-panel/ui-panel.html">
+        <link rel="import" href="component/ui-text-field/ui-text-field.html">
+        <style>
+            body { margin: 0; padding: 0; background-color: #f4f4f4; }
+
+        </style>
     </head>
     <body>
         <ui-navbar>
-            <logo>Qunar Management</logo>
+            <logo href="http://www.baidu.com/">Qunar Management</logo>
         </ui-navbar>
+        <br>
+
+        <div style="padding: 10px;">
+            <div layout horizontal>
+                <div flex one></div>
+                <div flex three>
+                    <ui-table>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Email</td>
+                                    <td>Crated At</td>
+                                    <td>Operate</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>kevin</td>
+                                    <td>keivin@qunar.com</td>
+                                    <td>2014-08-14 11:30</td>
+                                    <td>
+                                        <a href="#">Edit</a>
+                                        &nbsp;&nbsp;
+                                        <a href="#">Delete</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>kevin</td>
+                                    <td>keivin@qunar.com</td>
+                                    <td>2014-08-14 11:30</td>
+                                    <td>
+                                        <a href="#">Edit</a>
+                                        &nbsp;&nbsp;
+                                        <a href="#">Delete</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>kevin</td>
+                                    <td>keivin@qunar.com</td>
+                                    <td>2014-08-14 11:30</td>
+                                    <td>
+                                        <a href="#">Edit</a>
+                                        &nbsp;&nbsp;
+                                        <a href="#">Delete</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>kevin</td>
+                                    <td>keivin@qunar.com</td>
+                                    <td>2014-08-14 11:30</td>
+                                    <td>
+                                        <a href="#">Edit</a>
+                                        &nbsp;&nbsp;
+                                        <a href="#">Delete</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </ui-table>
+
+                    <ui-panel title="Login">
+                        <ui-form>
+                            <ui-text-field name="username" label="用户名" required></ui-text-field>
+                            <ui-text-field type="password" name="password" label="密码" required></ui-text-field>
+                        </ui-form>
+                    </ui-panel>
+
+                    <ui-panel title="Table">
+                        <p>hello world</p>
+                        <p>hello world</p>
+                        <p>hello world</p>
+
+                        <ui-table>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <td>Name</td>
+                                        <td>Email</td>
+                                        <td>Crated At</td>
+                                        <td>Operate</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>kevin</td>
+                                        <td>keivin@qunar.com</td>
+                                        <td>2014-08-14 11:30</td>
+                                        <td>
+                                            <a href="#">Edit</a>
+                                            &nbsp;&nbsp;
+                                            <a href="#">Delete</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>kevin</td>
+                                        <td>keivin@qunar.com</td>
+                                        <td>2014-08-14 11:30</td>
+                                        <td>
+                                            <a href="#">Edit</a>
+                                            &nbsp;&nbsp;
+                                            <a href="#">Delete</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>kevin</td>
+                                        <td>keivin@qunar.com</td>
+                                        <td>2014-08-14 11:30</td>
+                                        <td>
+                                            <a href="#">Edit</a>
+                                            &nbsp;&nbsp;
+                                            <a href="#">Delete</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>kevin</td>
+                                        <td>keivin@qunar.com</td>
+                                        <td>2014-08-14 11:30</td>
+                                        <td>
+                                            <a href="#">Edit</a>
+                                            &nbsp;&nbsp;
+                                            <a href="#">Delete</a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </ui-table>
+                    </ui-panel>
+                </div>
+            </div>
+        </div>
     </body>
 </html>

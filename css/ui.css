@@ -60,6 +60,11 @@ table {
 }
 
 /* line 50, ../scss/_reset.scss */
+body {
+  font-size: Helvetica, Arial;
+}
+
+/* line 54, ../scss/_reset.scss */
 a {
   text-decoration: none;
 }
@@ -77,4 +82,114 @@ a {
 .ui-navbar .logo {
   font-size: 16px;
   color: white;
+}
+
+/* line 5, ../scss/_table.scss */
+.ui-table {
+  margin-bottom: 20px;
+}
+/* line 8, ../scss/_table.scss */
+.ui-table .row {
+  display: -webkit-flex;
+  display: flex;
+}
+/* line 13, ../scss/_table.scss */
+.ui-table .item {
+  width: 100%;
+  box-sizing: border-box;
+}
+/* line 18, ../scss/_table.scss */
+.ui-table a {
+  color: #466fbb;
+}
+/* line 23, ../scss/_table.scss */
+.ui-table .thead .row {
+  background-color: #466fbb;
+}
+/* line 27, ../scss/_table.scss */
+.ui-table .thead .item {
+  font-size: 14px;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  border-right: 1px solid #b6c6e4;
+}
+/* line 34, ../scss/_table.scss */
+.ui-table .thead .item:last-child {
+  border-right: none;
+}
+/* line 41, ../scss/_table.scss */
+.ui-table .tbody .row {
+  background-color: white;
+  border-bottom: 1px solid #eee;
+}
+/* line 44, ../scss/_table.scss */
+.ui-table .tbody .row:nth-child(even) {
+  background-color: #fbfbfb;
+}
+/* line 48, ../scss/_table.scss */
+.ui-table .tbody .row:hover {
+  background-color: #f4f4f4;
+}
+/* line 53, ../scss/_table.scss */
+.ui-table .tbody .item {
+  padding: 10px;
+  line-height: 20px;
+  font-size: 12px;
+  text-align: center;
+}
+
+/* line 5, ../scss/_panel.scss */
+.ui-panel {
+  background-color: #fff;
+  margin-bottom: 20px;
+}
+
+/* line 10, ../scss/_panel.scss */
+.ui-panel-title {
+  padding: 10px 20px;
+  background-color: #466fbb;
+  color: #fff;
+  font-size: 14px;
+  line-height: 21px;
+}
+
+/* line 18, ../scss/_panel.scss */
+.ui-panel-body {
+  padding: 10px;
+}
+
+/* line 22, ../scss/_panel.scss */
+.ui-panel /deep/ ui-table::shadow .ui-table {
+  margin-bottom: 0 !important;
+}
+
+/* line 5, ../scss/_text-field.scss */
+.ui-text-field {
+  margin: 10px 20px;
+}
+
+/* line 9, ../scss/_text-field.scss */
+.ui-text-field .ui-text-field-label {
+  width: 150px;
+  text-align: right;
+  padding-right: 10px;
+  display: inline-block;
+  font-size: 14px;
+}
+
+/* line 17, ../scss/_text-field.scss */
+.ui-text-field-text {
+  border: 1px solid #ccc;
+  font-size: 12px;
+  line-height: 18px;
+  padding: 3px;
+  width: 200px;
+}
+
+/* line 25, ../scss/_text-field.scss */
+.ui-text-field-error {
+  color: #f90000;
+  font-size: 12px;
+  margin-left: 5px;
 }

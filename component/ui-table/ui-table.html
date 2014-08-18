@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+
+<link rel="import" href="../../bower_components/polymer/polymer.html" />
+
+<polymer-element name="ui-table">
+    <template>
+        <link rel="stylesheet" type="text/css" href="../../css/ui.css">
+        <style id="style"></style>
+        <div class="ui-table">
+            <div class="thead">
+                <div class="row">
+                    <template repeat="{{label in columnLabels}}">
+                        <div class="item">{{label}}</div>
+                    </template>
+                </div>
+            </div>
+
+            <div class="tbody" id="tbody">
+
+            </div>
+
+        </div>
+    </template>
+
+    <script>
+        Polymer("ui-table", {
+            itemClasses: ["1", "2"],
+            ready: function() {
+                this.columnLabels = [];
+                this.bodyRows = [];
+                this.setup();
+            },
+            setup: function() {
+                var self = this;
+                var slice = [].slice;
+
+                var headItems = this.querySelectorAll('thead th, thead td');
+                var bodyRows = this.querySelectorAll('tbody tr');
+                var tbody;
+
+                if (headItems.length > 0) {
+                    slice.call(headItems).forEach(function(item) {
+                        self.columnLabels.push(item.textContent);
+                    });
+                }
+
+                if (bodyRows.length > 0) {
+                    tbody = document.createElement('div');
+
+                    slice.call(bodyRows).forEach(function(row) {
+                        var tds = slice.call(row.querySelectorAll('th, td'));
+                        var tr = document.createElement('div');
+
+                        tr.classList.add('row');
+
+                        tds.forEach(function(td) {
+                            var item = document.createElement('div');
+
+                            item.classList.add('item');
+                            item.innerHTML = td.innerHTML;
+
+                            tr.appendChild(item);
+                        });
+
+                        tbody.appendChild(tr);
+                    });
+
+                    this.$.tbody.innerHTML = tbody.innerHTML;
+                }
+            }
+        });
+    </script>
+
+</polymer-element>
