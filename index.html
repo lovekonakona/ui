@@ -113,7 +113,7 @@
 
                     <ui-panel title="Login">
                         <ui-form>
-                            <ui-text-field name="username" label="用户名" required regex="^\w+$"></ui-text-field>
+                            <ui-text-field name="username" label="用户名" required regex="^\w+$" message="regex:代码错误"></ui-text-field>
                             <ui-text-field type="password" name="password" label="密码" required min="6" max="12"></ui-text-field>
                             <ui-text-field name="password" label="邮箱" email></ui-text-field>
                             <ui-button style="margin-left:180px;">提交</ui-button>

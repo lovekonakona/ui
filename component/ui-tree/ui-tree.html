@@ -15,9 +15,9 @@
         <div class="ui-tree">
             <template if="{{title && (!href || hasSubMenu)}}">
                 <template if="{{hasSubMenu}}">
-                    <span on-click="{{toggleSubMenu}}">
+                    <div class="ui-tree-title" on-click="{{toggleSubMenu}}">
                         {{title}}
-                    </span>
+                    </div>
                 </template>
 
                 <template if="{{!hasSubMenu}}">

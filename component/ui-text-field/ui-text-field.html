@@ -2,7 +2,7 @@
 
 <link rel="import" href="../../bower_components/polymer/polymer.html" />
 
-<polymer-element name="ui-text-field" attributes="name label required value min max regex email">
+<polymer-element name="ui-text-field" attributes="name label required value min max regex email message">
     <template>
         <link rel="stylesheet" type="text/css" href="../../css/ui.css">
 
@@ -18,6 +18,26 @@
             type: 'text',
             validated: true,
             ready: function() {
+                this.messages = {};
+
+                if (this.message) {
+                    this.message.split(';').forEach(function(msg) {
+                        var arr = msg.split(':');
+                        var key = arr[0];
+                        var value = arr[1];
+
+                        if (key && value) {
+                            key = key.trim();
+                            value = value.trim();
+
+                            this.messages[key] = value;
+                        }
+
+                    }.bind(this));
+                }
+
+                console.log(this.messages);
+
                 if (this.type != 'text' && this.type != 'password') {
                     this.type = 'text';
                 }
@@ -43,20 +63,28 @@
 
                 this.validated = false;
 
-                if (required != null && value == '') {
-                    this.errorMessage = "请输入" + this.label;
+                if (value == '') {
+                    if (required != null) {
+                        this.errorMessage = this.messages.required || "请输入" + this.label;
 
-                } else if (min != null && min >= length) {
-                    this.errorMessage = "不能少于" + min + "个字符";
+                    } else {
+                        this.validated = true;
+                    }
+
+                    return this.validated;
+                }
+
+                if (min != null && min >= length) {
+                    this.errorMessage = this.messages.min || "不能少于" + min + "个字符";
 
                 } else if (max != null && max <= length) {
-                    this.errorMessage = "不能多于" + max + "个字符";
+                    this.errorMessage = this.messages.max || "不能多于" + max + "个字符";
 
                 } else if (regex != null && value.match(new RegExp(regex)) == null) {
-                    this.errorMessage = "不符合规则";
+                    this.errorMessage = this.messages.regex || "不符合规则";
 
                 } else if (email != null && value.match(/^\w+@\w+(\.\w+)+$/) == null) {
-                    this.errorMessage = "请输入正确的邮箱";
+                    this.errorMessage = this.messages.email || "请输入正确的邮箱";
 
                 } else {
                     this.errorMessage = "";

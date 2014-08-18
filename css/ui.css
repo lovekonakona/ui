@@ -169,9 +169,10 @@ a {
   margin: 5px 0 5px 20px;
   font-size: 14px;
   line-height: 21px;
+  cursor: default;
 }
 
-/* line 11, ../scss/_tree.scss */
+/* line 12, ../scss/_tree.scss */
 .ui-tree::content::shadow .ui-tree {
   background-color: red;
 }
