@@ -2,7 +2,7 @@
 
 <link rel="import" href="../../bower_components/polymer/polymer.html" />
 
-<polymer-element name="ui-text-field" attributes="name label required">
+<polymer-element name="ui-text-field" attributes="name label required value min max regex email">
     <template>
         <link rel="stylesheet" type="text/css" href="../../css/ui.css">
 
@@ -47,10 +47,10 @@
                     this.errorMessage = "请输入" + this.label;
 
                 } else if (min != null && min >= length) {
-                    this.errorMessage = "不能小于" + min + "个字符";
+                    this.errorMessage = "不能少于" + min + "个字符";
 
                 } else if (max != null && max <= length) {
-                    this.errorMessage = "不能大于" + max + "个字符";
+                    this.errorMessage = "不能多于" + max + "个字符";
 
                 } else if (regex != null && value.match(new RegExp(regex)) == null) {
                     this.errorMessage = "不符合规则";

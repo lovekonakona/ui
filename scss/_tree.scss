@@ -1,0 +1,14 @@
+//
+// tree
+// --------------------------------------------------
+
+.ui-tree {
+    margin: 5px 0 5px 20px;
+    font-size: $base-fontsize;
+    line-height: $base-fontsize * 1.5;
+}
+
+.ui-tree::content::shadow .ui-tree {
+
+    background-color: red;
+}

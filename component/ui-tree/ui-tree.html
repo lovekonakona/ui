@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+
+<link rel="import" href="../../bower_components/polymer/polymer.html" />
+
+<polymer-element name="ui-tree" attributes="title href target">
+    <template>
+        <link rel="stylesheet" type="text/css" href="../../css/ui.css">
+        <style>
+            :host {
+                display: block;
+            }
+
+        </style>
+
+        <div class="ui-tree">
+            <template if="{{title && (!href || hasSubMenu)}}">
+                <template if="{{hasSubMenu}}">
+                    <span on-click="{{toggleSubMenu}}">
+                        {{title}}
+                    </span>
+                </template>
+
+                <template if="{{!hasSubMenu}}">
+                    {{title}}
+                </template>
+
+            </template>
+
+            <template if="{{href && !hasSubMenu}}">
+                <a href="{{href}}" target="{{target}}">{{title}}</a>
+            </template>
+
+            <div id="subMenu">
+                <content></content>
+            </div>
+        </div>
+
+    </template>
+
+    <script>
+        Polymer("ui-tree", {
+            target: "_self",
+            hasSubMenu: false,
+            ready: function() {
+                if (this.querySelectorAll('ui-tree').length > 0) {
+                    this.hasSubMenu = true;
+                }
+
+            },
+            toggleSubMenu: function() {
+                var style = this.$.subMenu.style;
+                style.display = (style.display == 'none') ? 'block' : 'none';
+            }
+
+        });
+    </script>
+
+</polymer-element>
