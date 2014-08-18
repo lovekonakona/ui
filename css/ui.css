@@ -176,6 +176,22 @@ a {
   background-color: red;
 }
 
+/* line 5, ../scss/_button.scss */
+.ui-button {
+  line-height: 20px;
+  font-size: 14px;
+  color: #fff;
+  background-color: #466fbb;
+  border: none;
+  outline: none;
+  padding: 5px 20px;
+}
+/* line 14, ../scss/_button.scss */
+.ui-button:active {
+  position: relative;
+  bottom: -1px;
+}
+
 /* line 5, ../scss/_text-field.scss */
 .ui-text-field {
   margin: 10px 20px;
