@@ -2,20 +2,22 @@
 
 <link rel="import" href="../../bower_components/polymer/polymer.html" />
 
-<polymer-element name="ui-text-field" attributes="name label required value min max regex email message">
+<polymer-element name="ui-text-field" attributes="name label trim required validate value min max regex email message">
     <template>
         <link rel="stylesheet" type="text/css" href="../../css/ui.css">
 
         <div class="ui-text-field">
             <label id="label" class="ui-text-field-label" for="input">{{label}}:</label>
-            <input class="ui-text-field-text" type="{{type}}" id="input" name="{{name}}" value="{{value}}" placeholder="{{placeholder}}" autocomplete="off" on-blur="{{validate}}">
+            <input class="ui-text-field-text" type="{{type}}" id="input" name="{{name}}" value="{{value}}" placeholder="{{placeholder}}" autocomplete="off" on-blur="{{valueChanged}}">
             <span id="error" class="ui-text-field-error">{{errorMessage}}</span>
         </div>
     </template>
 
     <script>
         Polymer("ui-text-field", {
+            value: "",
             type: 'text',
+            validate: "on",
             validated: true,
             ready: function() {
                 this.messages = {};
@@ -36,20 +38,23 @@
                     }.bind(this));
                 }
 
+                this.typeChanged();
+            },
+            typeChanged: function() {
                 if (this.type != 'text' && this.type != 'password') {
                     this.type = 'text';
                 }
             },
             valueChanged: function() {
-                var trim = this.trim;
-
-                if (trim != null) {
+                if (this.trim != null) {
                     this.value = this.value.trim();
                 }
 
-                this.validate();
+                if (this.validate != "off") {
+                    this.validateField();
+                }
             },
-            validate: function() {
+            validateField: function() {
                 var value    = this.value || "";
                 var length   = value.length;
 
@@ -66,6 +71,7 @@
                         this.errorMessage = this.messages.required || "请输入" + this.label;
 
                     } else {
+                        this.errorMessage = "";
                         this.validated = true;
                     }
 

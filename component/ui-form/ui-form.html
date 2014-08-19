@@ -2,7 +2,7 @@
 
 <link rel="import" href="../../bower_components/polymer/polymer.html" />
 
-<polymer-element name="ui-form" attributes="">
+<polymer-element name="ui-form" attributes="action method validate">
     <template>
         <link rel="stylesheet" type="text/css" href="../../css/ui.css">
         <style>
@@ -16,7 +16,12 @@
 
     <script>
         Polymer("ui-form", {
-            ready: function() {}
+            ready: function() {
+
+            },
+            validateForm: function() {
+
+            }
         });
     </script>
 

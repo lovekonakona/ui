@@ -12,15 +12,15 @@
     padding-right: 10px;
     display: inline-block;
     font-size: $base-fontsize;
-    height: ($small-fontsize * 1.5) + 8px;
-    line-height: ($small-fontsize * 1.5) + 8px;
+    height: ($small-fontsize) + 12px;
+    line-height: ($small-fontsize) + 12px;
 }
 
 .ui-text-field-text {
     border: 1px solid #ccc;
     font-size: $small-fontsize;
-    line-height: $small-fontsize * 1.5;
-    padding: 3px;
+    line-height: $small-fontsize;
+    padding: 5px;
     width: 200px;
 }
 

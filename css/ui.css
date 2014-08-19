@@ -170,9 +170,10 @@ a {
   font-size: 14px;
   line-height: 21px;
   cursor: default;
+  -webkit-user-select: none;
 }
 
-/* line 12, ../scss/_tree.scss */
+/* line 13, ../scss/_tree.scss */
 .ui-tree::content::shadow .ui-tree {
   background-color: red;
 }
@@ -205,16 +206,16 @@ a {
   padding-right: 10px;
   display: inline-block;
   font-size: 14px;
-  height: 26px;
-  line-height: 26px;
+  height: 24px;
+  line-height: 24px;
 }
 
 /* line 19, ../scss/_text-field.scss */
 .ui-text-field-text {
   border: 1px solid #ccc;
   font-size: 12px;
-  line-height: 18px;
-  padding: 3px;
+  line-height: 12px;
+  padding: 5px;
   width: 200px;
 }
 

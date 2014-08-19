@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+
+<link rel="import" href="../../bower_components/polymer/polymer.html" />
+<link rel="import" href="../base-log/base-log.html">
+
+<polymer-element name="base-request" attributes="auto url method data callback success error" hidden>
+    <template>
+        <base-log id="log" auto datetime message="def"></base-log>
+    </template>
+    <script>
+        Polymer("base-request", {
+            url: "",
+            method: "get",
+            async: '', // not `off` indicate YES
+            ready: function() {
+                console.log(this.auto, ",auto");
+
+                if (this.auto != null && this.auto != "off") {
+                    this.request();
+                }
+
+                this.$.log.log();
+            },
+            request: function(settings) {
+                settings || (settings = {});
+
+                var url = settings.url || this.url;
+                var method = settings.method || this.method;
+                var async = settings.async || this.async != 'off';
+
+                var xhr = new XMLHttpRequest();
+                xhr.open(method, url, async);
+
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState == 4) {
+                        this.callback && this.callback.call(null, xhr.response, xhr);
+
+
+                    }
+                }.bind(this);
+
+                xhr.send();
+            },
+            parseJSON: function(data) {
+                return JSON.parse(data + "");
+            }
+        });
+    </script>
+</polymer-element>

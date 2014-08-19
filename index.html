@@ -4,6 +4,9 @@
         <meta charset="UTF-8">
         <title>UI</title>
         <script src="bower_components/platform/platform.js"></script>
+        <link rel="import" href="bower_components/polymer/polymer.html">
+        <link rel="import" href="component/base-event/base-event.html">
+        <link rel="import" href="component/base-request/base-request.html">
         <link rel="import" href="component/ui-navbar/ui-navbar.html">
         <link rel="import" href="component/ui-table/ui-table.html">
         <link rel="import" href="component/ui-panel/ui-panel.html">
@@ -12,26 +15,31 @@
         <link rel="import" href="component/ui-form/ui-form.html">
         <link rel="import" href="component/ui-text-field/ui-text-field.html">
 
-        <link rel="import" href="component/ui-test/ui-test.html">
-        <style>
-            ui-button[unresolved] {
-                opacity: 0;
-            }
-            ui-button {
-                opacity: 1;
-                transition: opacity 1000ms;
-            }
-
-
-
-        </style>
-
         <style>
             body { margin: 0; padding: 0; background-color: #f4f4f4; }
         </style>
 
     </head>
     <body unresolved>
+        <polymer-element name="elem-test">
+            <template>
+                <base-request auto url="/index.html" callback="{{requestCallback}}" success="{{successCallback}}" error="{{errorCallback}}"></base-request>
+            </template>
+            <script>
+                Polymer('elem-test', {
+                    requestCallback: function(response) {
+
+                    },
+                    successCallback: function() {
+
+                    },
+                    errorCallback: function() {
+
+                    }
+                });
+            </script>
+        </polymer-element>
+        <elem-test></elem-test>
 
         <ui-navbar>
             <logo href="http://www.baidu.com/">Qunar Management</logo>
@@ -113,9 +121,9 @@
 
                     <ui-panel title="Login">
                         <ui-form>
-                            <ui-text-field name="username" label="用户名" required regex="^\w+$" message="regex:代码错误"></ui-text-field>
-                            <ui-text-field type="password" name="password" label="密码" required min="6" max="12"></ui-text-field>
-                            <ui-text-field name="password" label="邮箱" email></ui-text-field>
+                            <ui-text-field name="username" label="用户名" trim required regex="^\w+$" message="regex:代码错误"></ui-text-field>
+                            <ui-text-field type="password" name="password" trim label="密码" required min="6" max="12"></ui-text-field>
+                            <ui-text-field name="password" label="邮箱" trim email></ui-text-field>
                             <ui-button style="margin-left:180px;">提交</ui-button>
                         </ui-form>
                     </ui-panel>
