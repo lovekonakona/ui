@@ -166,7 +166,7 @@ a {
 
 /* line 5, ../scss/_tree.scss */
 .ui-tree {
-  margin: 5px 0 5px 20px;
+  padding: 5px 0 5px 20px;
   font-size: 14px;
   line-height: 21px;
   cursor: default;

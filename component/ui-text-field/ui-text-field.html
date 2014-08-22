@@ -2,7 +2,7 @@
 
 <link rel="import" href="../../bower_components/polymer/polymer.html" />
 
-<polymer-element name="ui-text-field" attributes="name label trim required validate value min max regex email message">
+<polymer-element name="ui-text-field" attributes="type name label trim required validate value min max regex email message">
     <template>
         <link rel="stylesheet" type="text/css" href="../../css/ui.css">
 
@@ -50,11 +50,18 @@
                     this.value = this.value.trim();
                 }
 
-                if (this.validate != "off") {
-                    this.validateField();
+                this.validateField();
+            },
+            validateChanged: function() {
+                if (this.validate == "off") {
+                    this.errorMessage = '';
                 }
             },
             validateField: function() {
+                if (this.validate == "off") {
+                    return true;
+                }
+
                 var value    = this.value || "";
                 var length   = value.length;
 

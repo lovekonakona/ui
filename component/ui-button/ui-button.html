@@ -2,15 +2,24 @@
 
 <link rel="import" href="../../bower_components/polymer/polymer.html" />
 
-<polymer-element name="ui-button" attributes="">
+<polymer-element name="ui-button" attributes="type">
     <template>
         <link rel="stylesheet" type="text/css" href="../../css/ui.css">
-        <button class="ui-button">{{textContent}}</button>
+        <button class="ui-button" type="{{type}}" on-click="{{clickCallback}}">{{textContent}}</button>
     </template>
 
     <script>
         Polymer("ui-button", {
-            ready: function() {}
+            ready: function() {},
+            clickCallback: function(event) {
+                if (this.type == "submit") {
+                    this.fire("submit", event);
+                }
+
+                this.fire("click", event);
+
+                event.preventDefault();
+            }
         });
     </script>
 

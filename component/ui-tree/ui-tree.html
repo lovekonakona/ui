@@ -6,10 +6,10 @@
     <template>
         <link rel="stylesheet" type="text/css" href="../../css/ui.css">
         <style>
-            :host {
-                display: block;
+            .ui-sub-menu {
+                transition: all 0.5s;
+                overflow: hidden;
             }
-
         </style>
 
         <div class="ui-tree">
@@ -30,8 +30,10 @@
                 <a href="{{href}}" target="{{target}}">{{title}}</a>
             </template>
 
-            <div id="subMenu">
-                <content></content>
+            <div id="subMenu" class="ui-sub-menu">
+                <div id="subMenuInner">
+                    <content></content>
+                </div>
             </div>
         </div>
 
@@ -41,15 +43,45 @@
         Polymer("ui-tree", {
             target: "_self",
             hasSubMenu: false,
+            showSubMenu: true,
             ready: function() {
                 if (this.querySelectorAll('ui-tree').length > 0) {
                     this.hasSubMenu = true;
-                }
 
+                }
+            },
+            domReady: function() {
+                this.initSubMenuHeight();
+            },
+            initSubMenuHeight: function() {
+                var style = this.$.subMenu.style;
+
+                if (this.showSubMenu) {
+                    style.height = 'auto';
+                } else {
+                    style.height = 0;
+                }
+            },
+            getSubMenuHeight: function() {
+                return this.$.subMenuInner.getBoundingClientRect().height + 'px';
             },
             toggleSubMenu: function() {
-                var style = this.$.subMenu.style;
-                style.display = (style.display == 'none') ? 'block' : 'none';
+                var showSubMenu = this.showSubMenu = !this.showSubMenu;
+
+                var callback = function() {
+                    this.$.subMenu.style.height = showSubMenu ? this.getSubMenuHeight() : '0px';
+                }.bind(this);
+
+                if (!this.showSubMenu) {
+                    this.$.subMenu.style.height = this.getSubMenuHeight();
+                    this.async(callback);
+
+                } else {
+                    callback();
+                    this.async(function() {
+                        this.$.subMenu.style.height = 'auto';
+                    }, null, 500);
+                }
             }
 
         });

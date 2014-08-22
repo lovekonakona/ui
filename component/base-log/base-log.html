@@ -2,11 +2,10 @@
 
 <link rel="import" href="../../bower_components/polymer/polymer.html" />
 
-<base-log format="${datetime} - ${message}"></base-log>
-
-<polymer-element name="base-log" attributes="auto type message datetime format" hidden>
+<polymer-element name="base-log" attributes="type message datetime format" hidden>
     <script>
         ;(function() {
+            var r_format = /\$\{([^\}]+)\}/g;
             var log, error;
 
             if (window.console) {
@@ -24,10 +23,9 @@
                     if (this.type != "log" && this.type != "error") {
                         this.type = "log"
                     }
-
-                    if (this.auto != null) {
-                        this[this.type](this.message);
-                    }
+                },
+                messageChanged: function() {
+                    this[this.type](this.message);
                 },
                 log: function(message) {
                     if (arguments.length == 0) {
@@ -48,6 +46,7 @@
                     error(message);
                 },
                 genMessage: function(message) {
+                    var newMessage;
 
                     if (this.format == null && this.datetime != null) {
                         this.format = "${datetime} - ${message}";
@@ -57,13 +56,17 @@
                         this.format = "${message}";
                     }
 
-                    return this.format.replace(/\$\{([^\}]+)\}/g, function(match, key) {
+                    newMessage = this.format.replace(r_format, function(match, key) {
                         if (key == 'datetime') {
                             return new Date();
                         } else if (key == 'message') {
                             return message;
                         }
                     });
+
+                    newMessage = newMessage.replace('\\n', '\n');
+
+                    return newMessage;
                 }
             });
         })();

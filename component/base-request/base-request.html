@@ -4,22 +4,15 @@
 <link rel="import" href="../base-log/base-log.html">
 
 <polymer-element name="base-request" attributes="auto url method data callback success error" hidden>
-    <template>
-        <base-log id="log" auto datetime message="def"></base-log>
-    </template>
     <script>
         Polymer("base-request", {
             url: "",
             method: "get",
             async: '', // not `off` indicate YES
             ready: function() {
-                console.log(this.auto, ",auto");
-
-                if (this.auto != null && this.auto != "off") {
+                if (this.auto != null) {
                     this.request();
                 }
-
-                this.$.log.log();
             },
             request: function(settings) {
                 settings || (settings = {});
