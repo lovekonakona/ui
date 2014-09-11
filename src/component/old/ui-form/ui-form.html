@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+
+<link rel="import" href="../../bower_components/polymer/polymer.html" />
+<link rel="import" href="../base-log/base-log.html" />
+
+<polymer-element name="ui-form" attributes="action method validate" on-submit="{{submitCallback}}">
+    <template>
+        <link rel="stylesheet" type="text/css" href="../../css/ui.css">
+        <style>
+            :host {
+                display: block;
+            }
+        </style>
+
+        <form action="{{action}}" method="{{method}}" id="form" hidden>
+            <template repeat="{{v in values}}">
+                <input type="hidden" name="{{v.name}}" value="{{v.value}}">
+            </template>
+        </form>
+        <content></content>
+
+        <base-log id="log" type="log" message="form inited" format="${datetime} \n>>> ${message}"></base-log>
+        <base-event listen="click" callback="{{clickHandler}}"></base-event>
+        <core-ajax url="" params="" response="{{response}}"></core-ajax>
+
+    </template>
+
+    <script>
+        Polymer("ui-form", {
+            validate: "on",
+            ready: function() {
+                this.values = [];
+                this.$.log.message = "hello world";
+
+            },
+            validateChanged: function() {
+                this.getAllFields().forEach(function(field) {
+                    field.validate = this.validate;
+                }.bind(this));
+            },
+            validateForm: function() {
+                var slice = [].slice;
+                var formValidated = true;
+
+                if (this.validate != "off") {
+
+                    this.getAllFields().forEach(function(field) {
+                        var validate;
+
+                        if (field.validateField) {
+                            validate = field.validateField();
+                            formValidated = validate && formValidated;
+                        }
+                    });
+                }
+
+                return formValidated;
+            },
+            getAllFields: function() {
+                var fields = this.querySelectorAll('ui-text-field');
+                fields = [].slice.call(fields);
+
+                return fields;
+            },
+            submitForm: function() {
+                if (this.validateForm()) {
+                    var fields = this.getAllFields();
+                    this.values = [];
+                    fields.forEach(function(field) {
+                        this.values.push({
+                            name: field.name,
+                            value: field.value
+                        });
+                    }.bind(this));
+
+                    this.async(function() {
+                        this.$.form.submit();
+                    });
+                }
+            },
+            submitCallback: function(event) {
+                this.submitForm();
+            }
+        });
+    </script>
+
+</polymer-element>

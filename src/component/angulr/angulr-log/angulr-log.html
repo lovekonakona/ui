@@ -1,0 +1,74 @@
+<!DOCTYPE HTML>
+
+<link rel="import" href="../../../bower_components/polymer/polymer.html" />
+
+<polymer-element name="base-log" attributes="type message datetime format" hidden>
+    <script>
+        ;(function() {
+            var r_format = /\$\{([^\}]+)\}/g;
+            var log, error;
+
+            if (window.console) {
+                log = function() { console.log.apply(console, arguments) };
+                error = function() { console.error.apply(console, arguments) };
+
+            } else {
+                log = error = function() {};
+            }
+
+            Polymer("base-log", {
+                type: "log",
+                message: "",
+                ready: function() {
+                    if (this.type != "log" && this.type != "error") {
+                        this.type = "log"
+                    }
+                },
+                messageChanged: function() {
+                    this[this.type](this.message);
+                },
+                log: function(message) {
+                    if (arguments.length == 0) {
+                        message = this.message;
+                    }
+
+                    message = this.genMessage(message);
+
+                    log(message);
+                },
+                error: function(message) {
+                    if (arguments.length == 0) {
+                        message = this.message;
+                    }
+
+                    message = this.genMessage(message);
+
+                    error(message);
+                },
+                genMessage: function(message) {
+                    var newMessage;
+
+                    if (this.format == null && this.datetime != null) {
+                        this.format = "${datetime} - ${message}";
+                    }
+
+                    if (!this.format) {
+                        this.format = "${message}";
+                    }
+
+                    newMessage = this.format.replace(r_format, function(match, key) {
+                        if (key == 'datetime') {
+                            return new Date();
+                        } else if (key == 'message') {
+                            return message;
+                        }
+                    });
+
+                    newMessage = newMessage.replace('\\n', '\n');
+
+                    return newMessage;
+                }
+            });
+        })();
+    </script>
+</polymer-element>

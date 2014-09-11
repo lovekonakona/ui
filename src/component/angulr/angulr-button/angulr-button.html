@@ -1,0 +1,77 @@
+<!DOCTYPE HTML>
+
+<link rel="import" href="../../../../bower_components/polymer/polymer.html" />
+
+<polymer-element name="angulr-button" attributes="disabled option size rounded actived">
+    <template>
+        <style>
+            :host {
+                display: inline-block;
+            }
+
+        </style>
+        <link rel="stylesheet" type="text/css" href="../../../css/angulr.css">
+        <button id="button" class="btn btn-{{option}}" style="outline:none;">{{textContent}}</button>
+    </template>
+    <script>
+        Polymer("angulr-button", {
+            disabled: null,
+
+            // button's styles
+            // @Optional: 'default', "primary", "success", "info", "warning", "danger", "link"
+            // @Default: "default"
+            option: "default",
+
+            // button's size
+            // @Optional: "lg", "sm", "xs"
+            // @Default: null
+            size: null,
+
+            // wheather button's rounded
+            // @Default: null
+            rounded: null,
+
+
+            // wheacther button is active
+            // @Default: null
+            actived: null,
+
+            disabledChanged: function() {
+                console.log(this.disabled != null);
+                var button = this.$.button;
+                if (this.disabled != null) {
+                    button.setAttribute("disabled", "");
+                } else {
+                    button.removeAttribute("disabled");
+                }
+            },
+            sizeChanged: function() {
+                var button = this.$.button;
+                var classList = button.classList;
+
+                classList.remove('btn-lg');
+                classList.remove('btn-sm');
+                classList.remove('btn-xs');
+
+                if (this.size) {
+                    classList.add("btn-" + this.size);
+                }
+            },
+            roundedChanged: function() {
+                if (this.rounded != null) {
+                    this.$.button.classList.add('btn-rounded');
+                } else {
+                    this.$.button.classList.remove('btn-rounded');
+                }
+            },
+            activedChanged: function() {
+                if (this.actived != null) {
+                    this.$.button.classList.add('active');
+                } else {
+                    this.$.button.classList.remove('active');
+                }
+            }
+
+        });
+    </script>
+</polymer-element>

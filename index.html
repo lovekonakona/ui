@@ -5,172 +5,25 @@
         <title>UI</title>
         <script src="bower_components/platform/platform.js"></script>
         <link rel="import" href="bower_components/polymer/polymer.html">
-        <link rel="import" href="component/base-event/base-event.html">
-        <link rel="import" href="component/base-request/base-request.html">
-        <link rel="import" href="component/ui-navbar/ui-navbar.html">
-        <link rel="import" href="component/ui-table/ui-table.html">
-        <link rel="import" href="component/ui-panel/ui-panel.html">
-        <link rel="import" href="component/ui-tree/ui-tree.html">
-        <link rel="import" href="component/ui-button/ui-button.html">
-        <link rel="import" href="component/ui-form/ui-form.html">
-        <link rel="import" href="component/ui-text-field/ui-text-field.html">
-
+        <link rel="import" href="src/component/angulr/angulr-button/angulr-button.html">
         <style>
             body { margin: 0; padding: 0; background-color: #f4f4f4; }
+            angulr-button {
+                min-width: 90px;
+            }
         </style>
 
     </head>
     <body unresolved>
+        <div style="padding:20px;">
+            <angulr-button>test</angulr-button>
+            <angulr-button option="primary" size="lg">primary</angulr-button>
+            <angulr-button option="success" rounded actived>success</angulr-button>
+            <angulr-button option="info">info</angulr-button>
+            <angulr-button option="warning">warning</angulr-button>
+            <angulr-button option="danger">danger</angulr-button>
+            <angulr-button option="link">link</angulr-button>
 
-        <ui-navbar>
-            <logo href="http://www.baidu.com/">Qunar Management</logo>
-        </ui-navbar>
-
-        <br>
-
-        <div style="padding: 10px;">
-            <div layout horizontal>
-                <div flex one>
-                    <ui-tree>
-                        <ui-tree title="系统管理">
-                            <ui-tree title="账号管理"></ui-tree>
-                            <ui-tree title="系统设置"></ui-tree>
-                        </ui-tree>
-                        <ui-tree title="商品管理">
-                            <ui-tree title="商品列表" href="#"></ui-tree>
-                            <ui-tree title="权限管理" href="http://www.baidu.com/" target="_blank">
-                                <ui-tree title="权限管理" href="http://www.baidu.com/" target="_blank"></ui-tree>
-                            </ui-tree>
-                        </ui-tree>
-                    </ui-tree>
-                </div>
-                <div flex three>
-                    <ui-table>
-                        <table>
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Email</td>
-                                    <td>Crated At</td>
-                                    <td>Operate</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>kevin</td>
-                                    <td>keivin@qunar.com</td>
-                                    <td>2014-08-14 11:30</td>
-                                    <td>
-                                        <a href="#">Edit</a>
-                                        &nbsp;&nbsp;
-                                        <a href="#">Delete</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>kevin</td>
-                                    <td>keivin@qunar.com</td>
-                                    <td>2014-08-14 11:30</td>
-                                    <td>
-                                        <a href="#">Edit</a>
-                                        &nbsp;&nbsp;
-                                        <a href="#">Delete</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>kevin</td>
-                                    <td>keivin@qunar.com</td>
-                                    <td>2014-08-14 11:30</td>
-                                    <td>
-                                        <a href="#">Edit</a>
-                                        &nbsp;&nbsp;
-                                        <a href="#">Delete</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>kevin</td>
-                                    <td>keivin@qunar.com</td>
-                                    <td>2014-08-14 11:30</td>
-                                    <td>
-                                        <a href="#">Edit</a>
-                                        &nbsp;&nbsp;
-                                        <a href="#">Delete</a>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </ui-table>
-
-                    <ui-panel title="Login">
-                        <ui-form action="/" method="get" validate="off">
-                            <ui-text-field name="username" label="用户名" trim required regex="^\w+$" message="regex:代码错误"></ui-text-field>
-                            <ui-text-field type="password" name="password" trim label="密码" required min="6" max="12"></ui-text-field>
-                            <ui-text-field name="email" label="邮箱" trim required email></ui-text-field>
-                            <ui-button style="margin-left:180px;" type="submit">提交</ui-button>
-                        </ui-form>
-                    </ui-panel>
-
-                    <ui-panel title="Table">
-                        <p>hello world</p>
-                        <p>hello world</p>
-                        <p>hello world</p>
-
-                        <ui-table>
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <td>Name</td>
-                                        <td>Email</td>
-                                        <td>Crated At</td>
-                                        <td>Operate</td>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>kevin</td>
-                                        <td>keivin@qunar.com</td>
-                                        <td>2014-08-14 11:30</td>
-                                        <td>
-                                            <a href="#">Edit</a>
-                                            &nbsp;&nbsp;
-                                            <a href="#">Delete</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>kevin</td>
-                                        <td>keivin@qunar.com</td>
-                                        <td>2014-08-14 11:30</td>
-                                        <td>
-                                            <a href="#">Edit</a>
-                                            &nbsp;&nbsp;
-                                            <a href="#">Delete</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>kevin</td>
-                                        <td>keivin@qunar.com</td>
-                                        <td>2014-08-14 11:30</td>
-                                        <td>
-                                            <a href="#">Edit</a>
-                                            &nbsp;&nbsp;
-                                            <a href="#">Delete</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>kevin</td>
-                                        <td>keivin@qunar.com</td>
-                                        <td>2014-08-14 11:30</td>
-                                        <td>
-                                            <a href="#">Edit</a>
-                                            &nbsp;&nbsp;
-                                            <a href="#">Delete</a>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </ui-table>
-                    </ui-panel>
-                </div>
-            </div>
         </div>
     </body>
 </html>
